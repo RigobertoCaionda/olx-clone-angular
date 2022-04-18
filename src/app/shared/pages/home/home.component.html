@@ -1,0 +1,38 @@
+    <div class="searchArea">
+       <div class="container">
+            <div class="searchBox">
+                <form method="GET" ngNoForm action="/ads"><!--Sem o ngNoForm nao da para clicar no Pesquisar e automaticamente passar tudo na url-->
+                    <input type="text" name="q" placeholder="O que você procura?" 
+                        [ngModel]="searchedTitle" (ngModelChange)="handleInputChange($event)">
+                    <select name="state">
+                        <option value="{{ state.name }}" *ngFor="let state of states">{{ state.name }}</option>
+                    </select>
+                    <button>Pesquisar</button>
+                </form>
+            </div>
+
+            <div class="categoriesArea">
+               <a [routerLink]="['/ads']" [queryParams]="{ cats: category.slug  }" 
+                *ngFor="let category of categories">
+                    <img [src]="category.img" alt="category image">
+                    {{ category.name }}
+               </a>
+            </div>
+       </div>
+    </div>
+
+    <div class="adsArea">
+        <div class="container">
+            <h3>Anúncios recentes</h3>
+            <div class="ad-item-area">
+                <app-ad-item class="ad-item" 
+                    *ngFor="let ad of ads.data  | paginate: { itemsPerPage: perPage, currentPage: page, totalItems: ads.meta?.total }, let i = index" [ads]="ads.data[i]"></app-ad-item>
+            </div>
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+            <a routerLink="/ads" class="see-all">Ver todos</a>
+            <div class="lorem">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut iaculis nisl vel lorem semper imperdiet. Praesent vitae lacus ante. Donec facilisis dolor vel augue dictum, id maximus felis elementum. 
+                Sed erat elit, consequat sed ante vitae, maximus congue ligula. Nunc volutpat, libero nec fringilla eleifend, quam ex ultrices dui, quis tempus tellus elit eu elit. Quisque ligula eros, accumsan id velit sit amet, tempor dapibus orci. Maecenas luctus gravida faucibus. Duis odio tellus, placerat quis massa vel, facilisis posuere neque.
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,7 @@
+<div class="container">
+    <h3>Todos Anúncios</h3>
+    <div class="ad-item-area">
+        <app-ad-item class="ad-item" 
+            *ngFor="let ad of ads.ads, let i = index" [ads]="ads.ads[i]"></app-ad-item>
+    </div>
+</div>

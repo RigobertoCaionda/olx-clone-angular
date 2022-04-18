@@ -1,0 +1,23 @@
+<header>
+   <div class="container">
+      <div class="headerArea">
+         <div class="logoArea">
+            <a routerLink="/">
+                 <span id="o">O</span>
+                 <span id="l">L</span>
+                 <span id="x">X</span>
+            </a>
+         </div>
+     
+         <div class="menuArea">
+             <a routerLink="/my-account" *ngIf="logged">Minha Conta</a>
+             <button *ngIf="logged" (click)="handleLogoutClick()">Sair</button>
+             <a routerLink="/post-an-ad" class="post-an-ad" *ngIf="logged">Post um anúncio</a>
+     
+             <a routerLink="/signin" *ngIf="!logged">Login</a>
+             <a routerLink="/signup" *ngIf="!logged">Cadastrar</a>
+             <a routerLink="/signin" class="post-an-ad" *ngIf="!logged">Post um anúncio</a>
+         </div>
+      </div>
+   </div>
+</header>

@@ -1,0 +1,8 @@
+<a class="ad-item" routerLink="/ad/{{ adsList.id }}">
+    
+    <div *ngFor="let img of adsList.image">
+        <img *ngIf="img.default == 1" src="{{ img.url }}">
+    </div>
+    <h4>{{ adsList.title }}</h4>
+    <span>KZ {{ adsList.price }}</span>
+</a>

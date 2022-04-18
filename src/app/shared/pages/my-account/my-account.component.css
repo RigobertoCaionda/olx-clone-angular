@@ -1,0 +1,14 @@
+.name {
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+.edit-profile {
+    padding: 10px;
+}
+.edit-profile a {
+    margin-right: 25px;
+}
+.edit-profile button {
+    cursor: pointer;
+}

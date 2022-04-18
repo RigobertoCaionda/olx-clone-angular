@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="top">
+        <div class="left-side">
+           <div class="image">
+                <carousel>
+                    <slide *ngFor="let image of ad.image">
+                    <img [src]="image.url" alt="" style="display: block; width: 100%; height: 300px;">
+                    </slide>
+                </carousel>
+           </div>
+            
+            <div class="info">
+                <h3>{{ ad?.title }}</h3>
+                <small>Criado em {{ dateFormat(ad?.created_at) }}</small>
+                <div class="desc">{{ ad?.description }}</div>
+                <div class="views">Visualizações: {{ ad?.views }}</div>
+                <div class="delete-ad">
+                    <button type="button" class="btn btn-primary" (click)="handleDeleteClick(ad?.id)">
+                        Apagar
+                      </button>
+                </div>
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="price">
+                <div>Preço:</div>
+                <span>KZ {{ ad?.price }}</span>
+            </div>
+            
+            <div class="seller-email"><a href="mailTo:{{ ad?.user?.email }}">Fale com o vendedor</a></div>
+        </div>
+    </div>
+</div>

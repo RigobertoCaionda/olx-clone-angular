@@ -1,0 +1,69 @@
+<div class="container">
+    <h2 class="title">Postar um anúncio</h2>
+    <div *ngIf="error !== ''" class="error">{{ error }}</div>
+    <form (submit)="onSubmit($event)">
+      <label class="area">
+          <div class="area--title">Titulo</div>
+          <div class="area-input">
+              <input type="text" required [(ngModel)]="title" name="title" [disabled]="disabled">
+          </div>
+      </label>
+
+      <label class="area">
+        <div class="area--title">Categoria</div>
+        <div class="area-input">
+            <select value="{{ categories }}" (change)="handleChange($event)" [disabled]="disabled">
+                <option></option>
+                <option *ngFor="let category of categories" value="{{ category.id }}">{{ category.name }}</option>
+            </select>
+        </div>
+    </label>
+
+    <label class="area">
+        <div class="area--title">Província</div>
+        <div class="area-input">
+            <select value="{{ states }}" (change)="handleChangeStates($event)" [disabled]="disabled">
+                <option></option>
+                <option *ngFor="let state of states" value="{{ state.id }}">{{ state.name }}</option>
+            </select>
+        </div>
+    </label>
+
+    <label class="area">
+        <div class="area--title">Preço</div>
+        <div class="area-input">
+            <input type="email" required [(ngModel)]="price" name="price" [disabled]="disabled" 
+            placeholder="KZ">
+        </div>
+    </label>
+
+    <label class="area">
+        <div class="area--title">Preço Negociável</div>
+        <div class="area-input">
+            <input type="checkbox" [(ngModel)]="priceNegotiable" name="priceNegotiable" [disabled]="disabled">
+        </div>
+    </label>
+
+      <label class="area">
+        <div class="area--title">Descrição</div>
+        <div class="area-input">
+            <textarea required [(ngModel)]="desc" name="desc" [disabled]="disabled"></textarea>
+        </div>
+    </label>
+
+    <label class="area">
+        <div class="area--title">Imagens (1 ou mais)</div>
+        <div class="area-input">
+            <!--<input type="file" [(ngModel)]="img" name="img" [disabled]="disabled" multiple>-->
+            <input type="file" (change)="inputFileChange($event)" [disabled]="disabled" multiple>
+        </div>
+    </label>
+
+    <label class="area">
+        <div class="area--title"></div>
+        <div class="area-input">
+            <button [disabled]="disabled">Adicionar anúncio</button>
+        </div>
+    </label>
+    </form>
+</div>

@@ -1,0 +1,45 @@
+// Criar uma pasta core no app, dentro dela tera o componente header, footer, servicos
+// Nao precisa-se de importar nada para colocar o routlet, uma vez que ele ja fica automaticamente importado.
+// Use o styles.css para estilos globais
+// coloque o router-outlet onde vc pretende que mude
+// As views serao criadas dentro da pasta shared pois elas serao compartilhadas dentro de varios contextos
+// Crie as rotas no arquivo de rotas
+// OBS: Se vc esquece de colocar o * numa diretiva que precisa, muita coisa desaparece da tela, fica estranho
+/*
+Para pegar um queryParams faz-se: import o ActivatedRoute de @angular/router, importa tmbm isso aqui:
+import 'rxjs/add/operator/filter'; No construtor vc vai injetar esse ActivatedRoute, assim: private route: ActivatedRoute.
+Agora, dentro da funcao ngOnInit faz isso:
+ngOnInit () {
+    this.route.queryParams.filter(params => params.categoria).subscribe(params => {
+        console.log(params.categoria);
+    });
+} Categoria é o nome do parametro que procuramos
+*/
+
+// Ao passar um componente dentro de outro, algumas vezes vc precisa passar com uma classe, para que ele seja estilizado ai
+// Como fazer o qs.stringify no angular, tem essa biblioteca?
+// Posso usar condicao for e if no mesmo local? Como fazer para usar componentes repartidos de forma eficiente, o css buga
+// Corrigir o layout que bugou na componetizacao.
+// Como criar slides no angular?
+// Quando vc vai componetizar no angular, o ngFor é feito nao no componente, mas sim no pai dele que o chamou, no proprio componente vc passa apenas o objeto dele, que ele vai precisar para mostrar os elementos
+/*
+Para vc colocar headers, nao necessariamente vc precisa criar um interceptor, vc pode fazer isso na propria
+requisicao, assim:  return this.http.post<any>(`${environment.baseURL}/ad/add`, product, {
+      headers: new HttpHeaders().append('Authorization', 'Bearer dfvfgfthtyhghgffgggfgfggfdfvf')
+    })
+    Repare que vc deve colocar isso no terceiro parametro.
+    Vc tmbm pode fazer assim: let httpHeader = new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer asdsdmccdssd'
+    });, agora, no terceiro parametro vc faz isso: {
+        headers: httpHeader
+    }
+
+    Com o append vc esta a criar os teus proprios headers, podes colocar coisas inexistentes, mas do jeito
+    abaixo vc esta usando apenas headers existentes, como o content-type, o authorization, etc... Ai vc nao pode criar 
+    um headers com nome meu header por exemplo, pois esse header nao existe. Isso so funciona com o append.
+*/
+
+/*
+Para criar paginacao com o ngx-pagination, primeiro instalamos assim: npm i ngx-pagination
+*/

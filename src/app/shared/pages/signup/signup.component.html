@@ -1,0 +1,51 @@
+<div class="container">
+    <h2 class="title">Cadastro</h2>
+    <div *ngIf="error !== ''" class="error">{{ error }}</div>
+    <form (submit)="onSubmit($event)">
+      <label class="area">
+          <div class="area--title">Nome Completo</div>
+          <div class="area-input">
+              <input type="text" required [(ngModel)]="name" name="name" [disabled]="disabled">
+          </div>
+      </label>
+
+      <label class="area">
+        <div class="area--title">Estado</div>
+        <div class="area-input">
+            <select value="{{ states }}" (change)="handleChange($event)" [disabled]="disabled">
+                <option></option>
+                <option *ngFor="let state of states" value="{{ state.id }}">{{ state.name }}</option>
+            </select>
+        </div>
+    </label>
+
+    <label class="area">
+        <div class="area--title">Email</div>
+        <div class="area-input">
+            <input type="email" required [(ngModel)]="email" name="email" [disabled]="disabled">
+        </div>
+    </label>
+
+      <label class="area">
+        <div class="area--title">Senha</div>
+        <div class="area-input">
+            <input type="password" required [(ngModel)]="password" name="password" [disabled]="disabled">
+        </div>
+    </label>
+
+    <label class="area">
+        <div class="area--title">Confirmar Senha</div>
+        <div class="area-input">
+            <input type="password" [(ngModel)]="confirmPassword" 
+                name="confirmPassword" [disabled]="disabled">
+        </div>
+    </label>
+
+    <label class="area">
+        <div class="area--title"></div>
+        <div class="area-input">
+            <button [disabled]="disabled">Fazer Cadastro</button>
+        </div>
+    </label>
+    </form>
+</div>

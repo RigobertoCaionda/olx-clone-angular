@@ -1,0 +1,7 @@
+<div class="container">
+    <div class="name">{{ user.name }}</div>
+    <div class="edit-profile">
+        <a routerLink="/edit_profile/{{ user.id }}">Editar Perfil</a>
+        <button (click)="deleteClick()">Apagar Perfil</button>
+    </div>
+</div>

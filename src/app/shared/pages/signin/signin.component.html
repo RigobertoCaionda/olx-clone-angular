@@ -1,0 +1,26 @@
+<div class="container">
+    <h2 class="title">Login</h2>
+    <div *ngIf="error !== ''" class="error">{{ error }}</div>
+    <form (submit)="onSubmit($event)">
+      <label class="area">
+          <div class="area--title">Email</div>
+          <div class="area-input">
+              <input type="email" required [(ngModel)]="email" name="email" [disabled]="disabled">
+          </div>
+      </label>
+
+      <label class="area">
+        <div class="area--title">Senha</div>
+        <div class="area-input">
+            <input type="password" required [(ngModel)]="password" name="password" [disabled]="disabled">
+        </div>
+    </label>
+
+    <label class="area">
+        <div class="area--title"></div>
+        <div class="area-input">
+            <button [disabled]="disabled">Fazer Login</button>
+        </div>
+    </label>
+    </form>
+</div>
