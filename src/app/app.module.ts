@@ -1,4 +1,6 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core'; // Para exibicao de coisas em portugues o locale_id
+import localePt from '@angular/common/locales/pt'; // Para exibicao de coisas em portugues
+import { registerLocaleData } from '@angular/common'; // Para exibicao de coisas em portugues
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
@@ -19,6 +21,8 @@ import { AdPageComponent } from './shared/pages/ad-page/ad-page.component';
 import { AddAdComponent } from './shared/pages/add-ad/add-ad.component';
 import { AdsComponent } from './shared/pages/ads/ads.component';
 import { EditpageComponent } from './shared/pages/editpage/editpage.component';
+
+registerLocaleData(localePt); // Para exibicao de coisas em portugues
 
 @NgModule({
   declarations: [
@@ -44,7 +48,12 @@ import { EditpageComponent } from './shared/pages/editpage/editpage.component';
     NgxPaginationModule,
     CarouselModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide:  LOCALE_ID,
+      useValue: 'pt-BR'
+    } // Para exibicao de coisas em portugues
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -59,10 +59,7 @@ export class ProductService {
   addAd (product: any): Observable<any> {
     return this.http.post<any>(`${environment.baseURL}/ad/add`, product, {
       headers: new HttpHeaders().append('Authorization', `Bearer ${this.authService.getToken()}`)
-    }).pipe(
-      map((obj) => obj),
-      catchError(e => this.errorHandler(e))
-    );
+    }).pipe( map((obj) => obj));
   }
 
   deleteAd (id: number): Observable<any> {
@@ -78,5 +75,5 @@ export class ProductService {
     //console.log(e.message); Mostra o nome do erro.
     console.log('ocorreu um erro');
     return EMPTY; // Nao seria necessario retornar esse EMPTY, mas se vc nao coloca isso, diz que nao pode retornar vazio
-  }
+  } // Vou retirar esse errorHandler
 }

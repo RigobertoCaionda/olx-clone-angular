@@ -46,10 +46,7 @@ export class AuthService {
   }
 
   signIn (user: any): Observable<any> {
-    return this.http.post<any>(`${environment.baseURL}/user/signin`,  user).pipe(
-      map((obj) => obj),
-      catchError((e) => this.errorHandler(e))
-    );
+    return this.http.post<any>(`${environment.baseURL}/user/signin`,  user).pipe(map((obj) => obj));
   }
 
   signUp (user: User): Observable<any> {

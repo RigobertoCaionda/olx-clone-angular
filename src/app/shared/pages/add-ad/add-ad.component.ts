@@ -77,16 +77,21 @@ export class AddAdComponent implements OnInit {
 					fData.append('imgs',this.fileInput[i]);
 				}
       }
-      this.productService.addAd(fData).subscribe(json => {
-        if(json.id) {
-         this.router.navigate([`/ad/${json.id}`]);
-         return;
-        } else {
-          if (json[0].fieldName == 'imgs') { // Se o erro for de imagem, a resposta vem em json[0].fieldName
-            this.error = 'Selecione uma imagem válida';
-          } else{
-            this.error = json.error;
-          }
+      this.productService.addAd(fData).subscribe({
+        next: (json) => {
+          if(json.id) {
+            this.router.navigate([`/ad/${json.id}`]);
+            return;
+           } else {
+             if (json[0].fieldName == 'imgs') { // Se o erro for de imagem, a resposta vem em json[0].fieldName
+               this.error = 'Selecione uma imagem válida';
+             } else{
+               this.error = json.error;
+             }
+           }
+        },
+        error: (error) => {
+          console.log('Alguma coisa falhou!');
         }
       });
     }else {

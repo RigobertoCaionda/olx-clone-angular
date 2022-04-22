@@ -23,14 +23,25 @@ export class SigninComponent implements OnInit {
     e.preventDefault();
     this.error = '';
     this.disabled = true;
-    this.authService.signIn({ email: this.email, password: this.password }).subscribe(json => {
+    this.authService.signIn({ email: this.email, password: this.password }).subscribe({
+      next: (json) => {
         this.disabled = false;
-        if (json.error) { // Nem precisa disso pq se chegou até aqui quer dizer que tudo deu certo, nao houve erros pois em nenhum momento no back eu retorno erro, é tudo gerenciado pelo adonisjs.
-          this.error = json.error;
-        } else {
-          this.authService.doLogin(json.token);
-          window.location.href = '/';
+        this.authService.doLogin(json.token); // Nem precisa verificar se deu certo pq se chega aqui é pq acertou o user e senha
+        window.location.href = '/';
+        
+      },
+      error: (error) => {
+        switch (error.error.errors[0].message) {
+          case 'E_INVALID_AUTH_UID: User not found' || 'E_INVALID_AUTH_PASSWORD: Password mis-match':
+            this.error = 'Usuário e/ou senha errado!';
+            this.disabled = false;
+          break;
+
+          default:
+            this.error = 'Alguma coisa deu errado!';
+            this.disabled = false;
         }
-      });
+      }
+    }); // O subscribe recebe um objeto com o next que diz o que acontecera caso der tudo certo e o error que diz o que acontecera caso der erro.
   }
 }

@@ -11,7 +11,7 @@
             
             <div class="info">
                 <h3>{{ ad?.title }}</h3>
-                <small>Criado em {{ dateFormat(ad?.created_at) }}</small>
+                <small>Criado em {{ ad?.created_at | date: 'dd-MMM-yyyy' }}</small><!--Estamos usando um pipe aqui, desse jeito ele foormata a data assim: 10-04-2020-->
                 <div class="desc">{{ ad?.description }}</div>
                 <div class="views">Visualizações: {{ ad?.views }}</div>
                 <div class="delete-ad">
